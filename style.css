@@ -55,7 +55,8 @@ header {
 }
 
 .logo-icon span{
-    color: var(--main-color);
+  color: var(--main-color);
+  margin-left: 1rem;
 }
 
 header.active {
@@ -77,14 +78,14 @@ header.active {
   font-weight: 700;
 }
 nav {
-  margin-right: 2rem;
+  margin-right: 15rem;
 }
 
 nav a {
-  font-size: 3rem;
+  font-size: 2.2rem;
   color: var(--white-color);
   font-weight: 500;
-  margin-right: 3rem;
+  margin-right: 5rem;
 }
 nav a:hover,
 nav a.active {
@@ -474,7 +475,7 @@ section.active {
   background: var(--second-bg-color);
   border-radius: 0.8rem;
   padding: 3rem 3rem;
-  height: calc((45rem - 2rem) / 2);
+  height: calc((46rem, -2rem) / 2);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -811,9 +812,10 @@ section.active {
   }
 }
 
-@media screen and (max-width: 910px) {
+@media screen and (max-width: 1375px) {
   #menu-icon {
     display: block;
+    margin-right: .5rem;
   }
 
   nav {
