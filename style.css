@@ -47,14 +47,14 @@ header {
   align-items: center;
 }
 
-.logo-icon img{
-    width: 9rem;
-   object-fit: cover;
-   color: var(--main-color);
-   overflow: hidden;
+.logo-icon img {
+  width: 9rem;
+  object-fit: cover;
+  color: var(--main-color);
+  overflow: hidden;
 }
 
-.logo-icon span{
+.logo-icon span {
   color: var(--main-color);
   margin-left: 1rem;
 }
@@ -565,7 +565,7 @@ section.active {
 .resume-detail.about .resume-item p span {
   color: var(--white-color);
   margin-left: 1rem;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
 .portfolio-container {
@@ -815,7 +815,7 @@ section.active {
 @media screen and (max-width: 1375px) {
   #menu-icon {
     display: block;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
 
   nav {
