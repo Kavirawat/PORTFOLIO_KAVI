@@ -19,6 +19,7 @@
 
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 html,
@@ -26,9 +27,43 @@ body {
   width: 100%;
   height: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg-color);
   color: var(--white-color);
   overflow-x: hidden;
+}
+
+/* Custom Cyber Neon Scrollbar */
+::-webkit-scrollbar {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(18, 22, 29, 0.75);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--main-color) 0%, #3ea813 100%);
+  border-radius: 1rem;
+  border: 0.2rem solid rgba(31, 36, 45, 0.95);
+  box-shadow: 0 0 1rem rgba(124, 240, 61, 0.5), inset 0 0 0.3rem rgba(255, 255, 255, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a2ff63 0%, var(--main-color) 100%);
+  box-shadow: 0 0 1.8rem rgba(124, 240, 61, 0.95), inset 0 0 0.5rem rgba(255, 255, 255, 0.6);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #b5ff75;
+  box-shadow: 0 0 2.2rem rgba(124, 240, 61, 1);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--main-color) rgba(18, 22, 29, 0.75);
 }
 
 header {
@@ -106,8 +141,9 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
+  height: 100dvh;
   min-height: 100%;
-  padding: 10rem 9% 2rem;
+  padding: 10rem 9% 3rem;
   background: var(--bg-color);
   visibility: hidden;
   opacity: 0;
@@ -115,6 +151,8 @@ section {
   transform-style: preserve-3d;
   backface-visibility: hidden;
   pointer-events: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 section.active {
@@ -123,7 +161,11 @@ section.active {
   overflow-y: auto;
   overflow-x: hidden;
   pointer-events: auto;
-  transform: perspective(1500px) rotateY(0deg) translateZ(0) scale(1);
+  transform: none;
+  overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 section.enter-3d-next {
@@ -528,20 +570,30 @@ section.exit-3d-prev {
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   gap: 2rem;
   height: 50rem;
-  overflow: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  padding-right: 0.5rem;
 }
 
 .resume-list::-webkit-scrollbar {
   width: 0.7rem;
 }
 
-.resume-list::-webkit-scrollbar-thumb {
-  background: transparent;
+.resume-list::-webkit-scrollbar-track {
+  background: rgba(18, 22, 29, 0.6);
   border-radius: 1rem;
 }
 
-.resume-list:hover::-webkit-scrollbar-thumb {
-  background: var(--main-color);
+.resume-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--main-color) 0%, #3ea813 100%);
+  border-radius: 1rem;
+  box-shadow: 0 0 0.8rem rgba(124, 240, 61, 0.4);
+}
+
+.resume-list::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a2ff63 0%, var(--main-color) 100%);
+  box-shadow: 0 0 1.4rem rgba(124, 240, 61, 0.8);
 }
 
 .resume-list .resume-item {
@@ -1001,28 +1053,6 @@ section.exit-3d-prev {
   display: none;
 }
 
-@media screen and (max-width: 1200px) {
-  html {
-    font-size: 55%;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  header {
-    padding: 2rem 4%;
-  }
-
-  section {
-    padding: 10rem 4% 2rem;
-  }
-}
-
-@media screen and (max-width: 810px) {
-  .contact-box .field-box {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media screen and (max-width: 1375px) {
   #menu-icon {
     display: block;
@@ -1083,6 +1113,69 @@ section.exit-3d-prev {
   }
 }
 
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  header {
+    padding: 2rem 4%;
+  }
+
+  section {
+    padding: 9.5rem 4% 8rem;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  /* Eliminate nested scroll traps on phone - whole section scrolls unified */
+  .resume-list {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .contact-box .field-box {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .resume-detail.skills .resume-list {
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1.5rem;
+  }
+
+  .resume-detail.skills .resume-item {
+    padding: 2.2rem 1rem 1.6rem;
+  }
+
+  .resume-detail.skills .resume-item i {
+    font-size: 6rem;
+  }
+
+  /* Make skill labels visible directly below icon on mobile */
+  .resume-detail.skills .resume-item span {
+    position: static;
+    opacity: 1;
+    transform: none;
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    background: transparent;
+    color: var(--white-color);
+    font-weight: 500;
+    pointer-events: auto;
+    text-align: center;
+    display: block;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .home-img {
     width: 32rem;
@@ -1099,6 +1192,10 @@ section.exit-3d-prev {
 @media screen and (max-width: 450px) {
   html {
     font-size: 50%;
+  }
+
+  section {
+    padding: 8.5rem 3.5% 8.5rem;
   }
 }
 
@@ -1255,5 +1352,67 @@ section.exit-3d-prev {
 .earth-pet-badge.active {
   opacity: 1;
   transform: translate(-50%, -10px);
+}
+
+/* Neon Scroll Progress Indicator Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 8rem;
+  left: 0;
+  width: 0%;
+  height: 0.35rem;
+  background: linear-gradient(90deg, #7cf03d 0%, #48c71f 50%, #b8ff7d 100%);
+  box-shadow: 0 0 1.2rem rgba(124, 240, 61, 0.8), 0 0 2.2rem rgba(124, 240, 61, 0.45);
+  z-index: 101;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.scroll-progress-bar.visible {
+  opacity: 1;
+}
+
+/* Floating Cyber Scroll-To-Top Button */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2.8rem;
+  right: 2.5rem;
+  width: 4.8rem;
+  height: 4.8rem;
+  background: rgba(25, 30, 39, 0.9);
+  border: 0.2rem solid var(--main-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--main-color);
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(2rem) scale(0.85);
+  transition: all 0.35s cubic-bezier(0.2, 0.85, 0.25, 1);
+  box-shadow: 0 0.4rem 1.8rem rgba(0, 0, 0, 0.5), 0 0 1.5rem rgba(124, 240, 61, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-top-btn:hover {
+  background: var(--main-color);
+  color: var(--bg-color);
+  box-shadow: 0 0 2.2rem rgba(124, 240, 61, 0.85);
+  transform: translateY(-0.4rem) scale(1.08);
+}
+
+.scroll-top-btn:active {
+  transform: translateY(0) scale(0.95);
 }
 

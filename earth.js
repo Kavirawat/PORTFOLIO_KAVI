@@ -487,7 +487,15 @@
       isTouch: false
     };
 
+    let touchStartedOnEarth = false;
+    let mouseStartedOnEarth = false;
+
     function onPointerDown(e) {
+      const homeSec = container.closest('section');
+      if (homeSec && !homeSec.classList.contains('active')) {
+        return;
+      }
+
       const isTouch = !!(e.touches && e.touches.length > 0);
       const coords = getEventCoords(e);
       activePointer.active = true;
@@ -496,6 +504,12 @@
       activePointer.startX = coords.x;
       activePointer.startY = coords.y;
       activePointer.isTouch = isTouch;
+
+      if (isTouch) {
+        touchStartedOnEarth = true;
+      } else {
+        mouseStartedOnEarth = true;
+      }
 
       prevMousePos = { x: coords.x, y: coords.y };
       dragVelocity = { x: 0, y: 0 };
@@ -518,20 +532,24 @@
 
     function onPointerMove(e) {
       const isTouch = !!(e.touches && e.touches.length > 0);
+      // Critical: If touch did NOT start on earth container, do not track or drag!
+      if (isTouch && !touchStartedOnEarth) {
+        return;
+      }
+
       const coords = getEventCoords(e);
       const clientX = coords.x;
       const clientY = coords.y;
 
       if (isTouch) {
-        activePointer.active = true;
-        activePointer.x = clientX;
-        activePointer.y = clientY;
-        activePointer.isTouch = true;
-
         const moveDist = Math.hypot(clientX - activePointer.startX, clientY - activePointer.startY);
         if (moveDist > 6) {
           isDragging = true;
         }
+        activePointer.active = true;
+        activePointer.x = clientX;
+        activePointer.y = clientY;
+        activePointer.isTouch = true;
       }
 
       if (isDragging) {
@@ -590,6 +608,8 @@
 
     function onPointerUp() {
       isDragging = false;
+      touchStartedOnEarth = false;
+      mouseStartedOnEarth = false;
       activePointer.active = false;
       prevHitLocal = null;
     }
@@ -600,6 +620,7 @@
 
     container.addEventListener('touchstart', onPointerDown, { passive: true });
     window.addEventListener('touchmove', (e) => {
+      if (!touchStartedOnEarth) return;
       onPointerMove(e);
       if (isDragging && e.cancelable) {
         

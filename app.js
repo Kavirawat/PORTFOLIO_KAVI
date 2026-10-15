@@ -9,6 +9,48 @@ menuIcon.addEventListener("click", () => {
   navbar.classList.toggle("active");
 });
 
+const scrollProgressBar = document.getElementById("scroll-progress-bar");
+const scrollTopBtn = document.getElementById("scroll-top-btn");
+
+function updateScrollUI(sec) {
+  if (!sec) return;
+  const maxScroll = sec.scrollHeight - sec.clientHeight;
+  const pct = maxScroll > 0 ? (sec.scrollTop / maxScroll) * 100 : 0;
+  if (scrollProgressBar) {
+    scrollProgressBar.style.width = `${pct}%`;
+    if (sec.scrollTop > 10) {
+      scrollProgressBar.classList.add("visible");
+    } else {
+      scrollProgressBar.classList.remove("visible");
+    }
+  }
+  if (scrollTopBtn) {
+    if (sec.scrollTop > 180) {
+      scrollTopBtn.classList.add("visible");
+    } else {
+      scrollTopBtn.classList.remove("visible");
+    }
+  }
+}
+
+// Bind scroll UI tracking to all sections
+sections.forEach((sec) => {
+  sec.addEventListener("scroll", () => {
+    if (sec.classList.contains("active")) {
+      updateScrollUI(sec);
+    }
+  }, { passive: true });
+});
+
+if (scrollTopBtn) {
+  scrollTopBtn.addEventListener("click", () => {
+    const activeSec = document.querySelector("section.active");
+    if (activeSec) {
+      activeSec.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+}
+
 let currentSectionIndex = 0;
 let isTransitioning = false;
 
@@ -46,6 +88,8 @@ const activePage = (targetIdx) => {
   }
 
   if (targetSec) {
+    targetSec.scrollTop = 0;
+    updateScrollUI(targetSec);
     targetSec.classList.remove("active", "enter-3d-next", "exit-3d-next", "enter-3d-prev", "exit-3d-prev");
     targetSec.classList.add(enterClass, "active");
   }
@@ -56,6 +100,7 @@ const activePage = (targetIdx) => {
     }
     if (targetSec) {
       targetSec.classList.remove(enterClass);
+      updateScrollUI(targetSec);
     }
     isTransitioning = false;
   }, 700);
@@ -83,15 +128,24 @@ const resumeBtn = document.querySelectorAll(".resume-btn");
 resumeBtn.forEach((btn, idx) => {
   btn.addEventListener("click", () => {
     const resumeDetails = document.querySelectorAll(".resume-detail");
-    resumeBtn.forEach((btn) => {
-      btn.classList.remove("active");
+    resumeBtn.forEach((b) => {
+      b.classList.remove("active");
     });
     btn.classList.add("active");
 
     resumeDetails.forEach((detail) => {
       detail.classList.remove("active");
     });
-    resumeDetails[idx].classList.add("active");
+    const targetDetail = resumeDetails[idx];
+    if (targetDetail) {
+      targetDetail.classList.add("active");
+      // On mobile/tablets, smoothly scroll to detail content so it's instantly visible
+      if (window.innerWidth <= 992) {
+        setTimeout(() => {
+          targetDetail.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 60);
+      }
+    }
   });
 });
 
