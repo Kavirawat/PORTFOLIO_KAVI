@@ -9,27 +9,57 @@ menuIcon.addEventListener("click", () => {
   navbar.classList.toggle("active");
 });
 
-const activePage = () => {
-  const headerBar = document.querySelector("header");
-  const barsBox = document.querySelector(".bars-box");
+let currentSectionIndex = 0;
+let isTransitioning = false;
 
-  headerBar.classList.remove("active");
-  setTimeout(() => {
-    headerBar.classList.add("active");
-  }, 1100);
+const activePage = (targetIdx) => {
+  if (targetIdx === currentSectionIndex && sections[targetIdx] && sections[targetIdx].classList.contains("active")) {
+    return;
+  }
+  if (isTransitioning) return;
+  isTransitioning = true;
 
-  navLinks.forEach((link) => {
-    link.classList.remove("active");
+  const isForward = targetIdx > currentSectionIndex;
+  const oldIdx = currentSectionIndex;
+  currentSectionIndex = targetIdx;
+
+  navLinks.forEach((link) => link.classList.remove("active"));
+  if (navLinks[targetIdx]) {
+    navLinks[targetIdx].classList.add("active");
+  }
+
+  const currentActiveSec = sections[oldIdx];
+  const targetSec = sections[targetIdx];
+
+  sections.forEach((sec, idx) => {
+    if (idx !== oldIdx && idx !== targetIdx) {
+      sec.classList.remove("active", "enter-3d-next", "exit-3d-next", "enter-3d-prev", "exit-3d-prev");
+    }
   });
 
-  barsBox.classList.remove("active");
-  setTimeout(() => {
-    barsBox.classList.add("active");
-  }, 1100);
+  const exitClass = isForward ? "exit-3d-next" : "exit-3d-prev";
+  const enterClass = isForward ? "enter-3d-next" : "enter-3d-prev";
 
-  sections.forEach((sec) => {
-    sec.classList.remove("active");
-  });
+  if (currentActiveSec) {
+    currentActiveSec.classList.remove("active", "enter-3d-next", "exit-3d-next", "enter-3d-prev", "exit-3d-prev");
+    currentActiveSec.classList.add(exitClass);
+  }
+
+  if (targetSec) {
+    targetSec.classList.remove("active", "enter-3d-next", "exit-3d-next", "enter-3d-prev", "exit-3d-prev");
+    targetSec.classList.add(enterClass, "active");
+  }
+
+  setTimeout(() => {
+    if (currentActiveSec) {
+      currentActiveSec.classList.remove(exitClass);
+    }
+    if (targetSec) {
+      targetSec.classList.remove(enterClass);
+    }
+    isTransitioning = false;
+  }, 700);
+
   menuIcon.classList.remove("fa-xmark");
   navbar.classList.remove("active");
 };
@@ -37,26 +67,14 @@ const activePage = () => {
 navLinks.forEach((link, idx) => {
   link.addEventListener("click", () => {
     if (!link.classList.contains("active")) {
-      activePage();
-
-      link.classList.add("active");
-
-      setTimeout(() => {
-        sections[idx].classList.add("active");
-      }, 1100);
+      activePage(idx);
     }
   });
 });
 
 logoLink.addEventListener("click", () => {
   if (!navLinks[0].classList.contains("active")) {
-    activePage();
-
-    navLinks[0].classList.add("active");
-
-    setTimeout(() => {
-      sections[0].classList.add("active");
-    }, 1100);
+    activePage(0);
   }
 });
 
@@ -120,3 +138,75 @@ arrowLeft.addEventListener("click", () => {
   }
   activePortfolio();
 });
+
+const contactForm = document.getElementById("contact-form");
+const emailSubmitBtn = document.getElementById("email-submit-btn");
+const contactStatusMsg = document.getElementById("contact-status-msg");
+
+function getContactFormData() {
+  const name = document.getElementById("contact-name").value.trim();
+  const email = document.getElementById("contact-email").value.trim();
+  const phone = document.getElementById("contact-phone").value.trim();
+  const subject = document.getElementById("contact-subject").value.trim();
+  const message = document.getElementById("contact-message").value.trim();
+
+  return { name, email, phone, subject, message };
+}
+
+function sendViaWhatsApp() {
+  const data = getContactFormData();
+  if (!contactForm.reportValidity()) return;
+
+  const waText = 
+    `*New Contact Message from Portfolio*\n\n` +
+    `👤 *Name:* ${data.name}\n` +
+    `📧 *Email:* ${data.email}\n` +
+    `📞 *Phone:* ${data.phone}\n` +
+    `📌 *Subject:* ${data.subject}\n\n` +
+    `💬 *Message:*\n${data.message}`;
+
+  const waUrl = `https://api.whatsapp.com/send?phone=918966856380&text=${encodeURIComponent(waText)}`;
+  
+  if (contactStatusMsg) {
+    contactStatusMsg.style.display = "block";
+    contactStatusMsg.textContent = "✓ Opening WhatsApp to send your message to (+91) 8966856380...";
+  }
+
+  window.open(waUrl, "_blank");
+}
+
+function sendViaEmail() {
+  const data = getContactFormData();
+  if (!contactForm.reportValidity()) return;
+
+  const mailSubject = encodeURIComponent(data.subject || `Portfolio Message from ${data.name}`);
+  const mailBody = encodeURIComponent(
+    `Name: ${data.name}\n` +
+    `Email: ${data.email}\n` +
+    `Phone: ${data.phone}\n` +
+    `Subject: ${data.subject}\n\n` +
+    `Message:\n${data.message}`
+  );
+
+  const mailUrl = `mailto:kavirrawat896@gmail.com?subject=${mailSubject}&body=${mailBody}`;
+
+  if (contactStatusMsg) {
+    contactStatusMsg.style.display = "block";
+    contactStatusMsg.textContent = "✓ Opening Email client to send your message to kavirrawat896@gmail.com...";
+  }
+
+  window.location.href = mailUrl;
+}
+
+if (contactForm) {
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    sendViaWhatsApp();
+  });
+}
+
+if (emailSubmitBtn) {
+  emailSubmitBtn.addEventListener("click", () => {
+    sendViaEmail();
+  });
+}

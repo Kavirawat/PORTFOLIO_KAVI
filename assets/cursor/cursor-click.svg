@@ -1,0 +1,53 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg_click" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(31 29) rotate(90) scale(28)">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.92"></stop>
+      <stop offset="42%" stop-color="#A5F580" stop-opacity="0.42"></stop>
+      <stop offset="100%" stop-color="#7CF03D" stop-opacity="0"></stop>
+    </radialGradient>
+
+    <linearGradient id="ring_click" x1="16" y1="13" x2="47" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"></stop>
+      <stop offset="40%" stop-color="#9EFF55" stop-opacity="0.95"></stop>
+      <stop offset="100%" stop-color="#7CF03D" stop-opacity="0.75"></stop>
+    </linearGradient>
+
+    <linearGradient id="tail_click" x1="27" y1="32" x2="44" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"></stop>
+      <stop offset="65%" stop-color="#9EFF55" stop-opacity="0.65"></stop>
+      <stop offset="100%" stop-color="#7CF03D" stop-opacity="0.2"></stop>
+    </linearGradient>
+
+    <filter id="glow_click" x="-90%" y="-90%" width="280%" height="280%">
+      <feGaussianBlur stdDeviation="3.8" result="blur1"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur1"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <circle cx="31" cy="29" r="27" fill="url(#bg_click)"></circle>
+
+  <circle cx="31" cy="29" r="16.1" stroke="url(#ring_click)" stroke-width="2.2" stroke-linecap="round" filter="url(#glow_click)" opacity="1"></circle>
+
+  <circle cx="31" cy="29" r="20.5" stroke="#9EFF55" stroke-opacity="0.45" stroke-width="1" stroke-dasharray="2 4" filter="url(#glow_click)"></circle>
+
+  <circle cx="31" cy="29" r="11.8" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="1"></circle>
+
+  <path d="M31 20.5L32.8 25.1L37.4 26.9L32.8 28.7L31 33.3L29.2 28.7L24.6 26.9L29.2 25.1L31 20.5Z" fill="#FFFFFF" fill-opacity="0.95" filter="url(#glow_click)"></path>
+
+  <circle cx="31" cy="26.8" r="2.2" fill="#7CF03D" fill-opacity="0.85" filter="url(#glow_click)"></circle>
+
+  <path d="M30.7 33.2C34.8 35.3 38.5 39.2 41.3 46.1" stroke="url(#tail_click)" stroke-width="2" stroke-linecap="round" filter="url(#glow_click)"></path>
+
+  <path d="M28.6 34.6C32.1 37.1 34.8 40.5 37 45.4" stroke="url(#tail_click)" stroke-width="1.2" stroke-linecap="round" opacity="0.9"></path>
+
+  <path d="M31 8V13.2" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="1.25" stroke-linecap="round"></path>
+  <path d="M48 15L44.4 18.6" stroke="#FFFFFF" stroke-opacity="0.88" stroke-width="1.25" stroke-linecap="round"></path>
+  <path d="M54 29H48.8" stroke="#FFFFFF" stroke-opacity="0.88" stroke-width="1.25" stroke-linecap="round"></path>
+  <path d="M47.2 41.2L43.6 37.6" stroke="#FFFFFF" stroke-opacity="0.88" stroke-width="1.25" stroke-linecap="round"></path>
+
+  <path d="M16 16L17.1 18.8L19.9 19.9L17.1 21L16 23.8L14.9 21L12.1 19.9L14.9 18.8L16 16Z" fill="#F4FFE8" fill-opacity="0.8"></path>
+  <path d="M49 18L50 20.5L52.5 21.5L50 22.5L49 25L48 22.5L45.5 21.5L48 20.5L49 18Z" fill="#F4FFE8" fill-opacity="0.9"></path>
+</svg>

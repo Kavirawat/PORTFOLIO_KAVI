@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -16,6 +16,8 @@
     />
   </head>
   <body>
+    <div class="cursor cursor-default" id="cursor" aria-hidden="true"></div>
+    <canvas id="cursor-canvas"></canvas>
     <!-- header -->
     <header class="active">
       <a href="#" class="logo">
@@ -47,10 +49,14 @@
         <h1>Kavi Rawat</h1>
         <h2>
           I'm a
-          <span style="--i: 4" data-text="Coder">Coder</span>
-          <span style="--i: 3" data-text="Photo Editor">Photo Editor</span>
-          <span style="--i: 2" data-text="Frontend Developer"
-            >Frontend Developer</span
+          <span style="--i: 4" data-text="AI Agent Developer"
+            >AI Agent Developer</span
+          >
+          <span style="--i: 3" data-text="Full Stack Developer"
+            >Full Stack Developer</span
+          >
+          <span style="--i: 2" data-text="Photo Editor"
+            >Photo Editor</span
           >
           <span style="--i: 1" data-text="Javascript Developer."
             >Javascript Developer.</span
@@ -58,11 +64,11 @@
         </h2>
         <p>
           Hey 👋 everyone, This is kavi Rawat, I am from Electronics and
-          Communication Engineer and Mern stack developer. I currently expanded my
-          skill set into web Development using, HTML, CSS, Javascript - aiming
-          to connect backend intelligence with real-word frontend and backend experience.
-          Passionate about building smart, scalable systems that solve real
-          problems.
+          Communication Engineer, AI Agent developer and Mern stack developer. I
+          currently expanded my skill set into web Development using, HTML, CSS,
+          Javascript - aiming to connect backend intelligence with real-word
+          frontend and backend experience. Passionate about building smart,
+          scalable systems that solve real problems.
         </p>
         <div class="btn-sci">
           <a
@@ -89,9 +95,10 @@
         </div>
       </div>
       <div class="home-img">
+        <div class="earth-container" id="earth-container"></div>
         <div class="img-box">
           <div class="img-item">
-            <img src="/photos/kavi.png" alt="kavir image" />
+            <img src="photos/kavir.jpeg" alt="kavir image" />
           </div>
         </div>
       </div>
@@ -259,18 +266,16 @@
                 <p class="year">2024 - Present</p>
                 <h3>Programing Course</h3>
                 <p class="company">Online Course</p>
-                <p>
-                  I am studying my coding on online plateform
-                </p>
+                <p>I am studying my coding on online plateform</p>
               </div>
               <div class="resume-item">
                 <p class="year">2022 - 2026</p>
                 <h3>B.tech</h3>
                 <p class="company">RGPV University</p>
                 <p>
-                  I have completed my B.tech From Shri Rawatpura Sarkar Institute
-                  of Technology And Science Datia (RGPV University Bhopal)
-                  Madhya Pradesh 7.95 cgpa.
+                  I have completed my B.tech From Shri Rawatpura Sarkar
+                  Institute of Technology And Science Datia (RGPV University
+                  Bhopal) Madhya Pradesh 7.95 cgpa.
                 </p>
               </div>
               <div class="resume-item">
@@ -302,7 +307,7 @@
             </p>
             <div class="resume-list">
               <div class="resume-item">
-              <i class="fa-brands fa-java"></i>
+                <i class="fa-brands fa-java"></i>
                 <span>Java</span>
               </div>
               <div class="resume-item">
@@ -333,11 +338,11 @@
                 <i class="fa-brands fa-envira"></i>
                 <span>MongoDB</span>
               </div>
-               <div class="resume-item">
+              <div class="resume-item">
                 <i class="fa-brands fa-react"></i>
                 <span>React</span>
               </div>
-               <div class="resume-item">
+              <div class="resume-item">
                 <i class="fa-solid fa-diagram-project"></i>
                 <span>Tailwind CSS</span>
               </div>
@@ -353,7 +358,7 @@
                 <i class="fa-brands fa-github"></i>
                 <span>Github</span>
               </div>
-                <div class="resume-item">
+              <div class="resume-item">
                 <i class="fa-brands fa-shoelace"></i>
                 <span>Spring Boot</span>
               </div>
@@ -437,14 +442,20 @@
               >
             </div>
           </div>
-           <div class="portfolio-detail">
+          <div class="portfolio-detail">
             <p class="numb">02</p>
             <h3>Pro Connection</h3>
             <p>
-            Engineered a responsive MERN Generative AI platform using Context API for optimized state management and fluid UX.Integrated UUID session tracking to handle unique chat threads and maintain persistent user histories via SessionStorage.
+              Engineered a responsive MERN Generative AI platform using Context
+              API for optimized state management and fluid UX.Integrated UUID
+              session tracking to handle unique chat threads and maintain
+              persistent user histories via SessionStorage.
             </p>
             <div class="tech">
-              <p>React.js, Node.js, Express.js, MongoDB, Context API, REST APIs, CSS3, Render, RestFul API's</p>
+              <p>
+                React.js, Node.js, Express.js, MongoDB, Context API, REST APIs,
+                CSS3, Render, RestFul API's
+              </p>
             </div>
             <div class="live-github">
               <a href="https://proconnectlinkedinclonefrontend.onrender.com"
@@ -457,14 +468,20 @@
               >
             </div>
           </div>
-            <div class="portfolio-detail">
+          <div class="portfolio-detail">
             <p class="numb">03</p>
             <h3>SigmaGPT – Full-Stack Generative AI Platform</h3>
             <p>
-            Engineered a responsive MERN Generative AI platform using Context API for optimized state management and fluid UX.Integrated UUID session tracking to handle unique chat threads and maintain persistent user histories via SessionStorage.
+              Engineered a responsive MERN Generative AI platform using Context
+              API for optimized state management and fluid UX.Integrated UUID
+              session tracking to handle unique chat threads and maintain
+              persistent user histories via SessionStorage.
             </p>
             <div class="tech">
-              <p>React.js, Node.js, Express.js, MongoDB, Context API, REST APIs, CSS3, Render, RestFul API's</p>
+              <p>
+                React.js, Node.js, Express.js, MongoDB, Context API, REST APIs,
+                CSS3, Render, RestFul API's
+              </p>
             </div>
             <div class="live-github">
               <a href="https://apnasigmagpt-1.onrender.com"
@@ -481,10 +498,15 @@
             <p class="numb">04</p>
             <h3>Apna Video Call</h3>
             <p>
-             A real-time, peer-to-peer communication web application designed to provide seamless, face-to-face interaction across distances. It is frequently described as a lightweight
+              A real-time, peer-to-peer communication web application designed
+              to provide seamless, face-to-face interaction across distances. It
+              is frequently described as a lightweight
             </p>
             <div class="tech">
-              <p>Node.js, express.js, MongoDB, HTML, CSS, JavaScript, RestFul API's</p>
+              <p>
+                Node.js, express.js, MongoDB, HTML, CSS, JavaScript, RestFul
+                API's
+              </p>
             </div>
             <div class="live-github">
               <a href="https://apnavideocallfrontend-j61o.onrender.com"
@@ -581,7 +603,6 @@
               >
             </div>
           </div>
-          
         </div>
         <div class="portfolio-box">
           <!-- images carousel -->
@@ -590,7 +611,7 @@
               <div class="img-item">
                 <img src="/photos/airbnb.png" alt="portfolio" />
               </div>
-               <div class="img-item">
+              <div class="img-item">
                 <img src="/photos/linked.png" alt="portfolio" />
               </div>
               <div class="img-item">
@@ -630,7 +651,9 @@
         <div class="contact-box">
           <h2>Let's Work Together</h2>
           <p class="desc">
-           I’m currently based in Datia, Madhya Pradesh, and available for new opportunities. Whether you have a question or just want to say hi, my inbox is always open!
+            I’m currently based in Datia, Madhya Pradesh, and available for new
+            opportunities. Whether you have a question or just want to say hi,
+            my inbox is always open!
           </p>
           <div class="contact-detail">
             <i class="fa-solid fa-phone-volume"></i>
@@ -655,25 +678,45 @@
           </div>
         </div>
         <div class="contact-box">
-          <form action="/kavirrawat896@gmail.com" method="post">
+          <form id="contact-form">
             <h2 class="heading">contact <span>Me!</span></h2>
             <div class="field-box">
-              <input type="text" placeholder="Full Name" required />
-              <input type="text" placeholder="Email Address" required />
-              <input type="text" placeholder="Phone Number" required />
-              <input type="text" placeholder="Email Subject" required />
+              <input type="text" id="contact-name" name="name" placeholder="Full Name" required />
+              <input type="email" id="contact-email" name="email" placeholder="Email Address" required />
+              <input type="tel" id="contact-phone" name="phone" placeholder="Phone Number" required />
+              <input type="text" id="contact-subject" name="subject" placeholder="Email Subject" required />
               <textarea
-                name=""
-                id=""
+                name="message"
+                id="contact-message"
                 placeholder="Your Message"
                 required
               ></textarea>
             </div>
-            <button type="submit" class="btn">Send Message</button>
+            <div class="contact-action-box">
+              <button type="submit" id="whatsapp-submit-btn" class="btn contact-btn whatsapp-btn">
+                <i class="fa-brands fa-whatsapp"></i> Send on WhatsApp
+              </button>
+              <button type="button" id="email-submit-btn" class="btn contact-btn email-btn">
+                <i class="fa-solid fa-envelope"></i> Send via Email
+              </button>
+            </div>
+            <p id="contact-status-msg" class="contact-status"></p>
           </form>
         </div>
       </div>
     </section>
+    <script src="three.min.js"></script>
+    <script>
+      if (typeof THREE === 'undefined') {
+        document.write(
+          '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\\/script>',
+        );
+      }
+    </script>
+    <script src="globe-data.js"></script>
+    <script src="kavi-image.js"></script>
+    <script src="earth.js"></script>
     <script src="app.js"></script>
+    <script src="cursor.js"></script>
   </body>
 </html>

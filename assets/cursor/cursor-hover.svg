@@ -1,0 +1,47 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg_hover" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(31 29) rotate(90) scale(26)">
+      <stop offset="0%" stop-color="#F4FFF0" stop-opacity="0.75"></stop>
+      <stop offset="45%" stop-color="#A5F580" stop-opacity="0.35"></stop>
+      <stop offset="100%" stop-color="#7CF03D" stop-opacity="0"></stop>
+    </radialGradient>
+
+    <linearGradient id="ring_hover" x1="16" y1="13" x2="47" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"></stop>
+      <stop offset="45%" stop-color="#9EFF55" stop-opacity="0.9"></stop>
+      <stop offset="100%" stop-color="#7CF03D" stop-opacity="0.7"></stop>
+    </linearGradient>
+
+    <linearGradient id="tail_hover" x1="27" y1="32" x2="43" y2="51" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"></stop>
+      <stop offset="65%" stop-color="#9EFF55" stop-opacity="0.6"></stop>
+      <stop offset="100%" stop-color="#7CF03D" stop-opacity="0.15"></stop>
+    </linearGradient>
+
+    <filter id="glow_hover" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3.2" result="blur1"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur1"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <circle cx="31" cy="29" r="25" fill="url(#bg_hover)"></circle>
+
+  <circle cx="31" cy="29" r="15.8" stroke="url(#ring_hover)" stroke-width="2" stroke-linecap="round" filter="url(#glow_hover)" opacity="1"></circle>
+
+  <circle cx="31" cy="29" r="11.6" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="1"></circle>
+
+  <path d="M31 20.8L32.6 25L36.8 26.6L32.6 28.2L31 32.4L29.4 28.2L25.2 26.6L29.4 25L31 20.8Z" fill="#FFFFFF" fill-opacity="0.98" filter="url(#glow_hover)"></path>
+
+  <circle cx="31" cy="26.6" r="2.1" fill="#7CF03D" fill-opacity="0.8" filter="url(#glow_hover)"></circle>
+
+  <path d="M30.7 33.2C34.6 35.4 38 39.1 40.8 45.6" stroke="url(#tail_hover)" stroke-width="1.9" stroke-linecap="round" filter="url(#glow_hover)"></path>
+
+  <path d="M28.7 34.5C31.9 36.8 34.5 40.1 36.6 44.8" stroke="url(#tail_hover)" stroke-width="1.15" stroke-linecap="round" opacity="0.85"></path>
+
+  <path d="M47 16L48.1 18.7L50.8 19.8L48.1 20.9L47 23.6L45.9 20.9L43.2 19.8L45.9 18.7L47 16Z" fill="#F4FFE8" fill-opacity="0.9"></path>
+  <path d="M17 18L17.9 20.1L20 21L17.9 21.9L17 24L16.1 21.9L14 21L16.1 20.1L17 18Z" fill="#F4FFE8" fill-opacity="0.75"></path>
+  <path d="M47 34L47.8 36L49.8 36.8L47.8 37.6L47 39.6L46.2 37.6L44.2 36.8L46.2 36L47 34Z" fill="#F4FFE8" fill-opacity="0.8"></path>
+</svg>
